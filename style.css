@@ -1,5 +1,5 @@
 /* ==========================================================
-   Digital Citizen — style.css
+   Cyberio — style.css
    ========================================================== */
 
 /* ---------- 1. Theme tokens ---------- */
@@ -9,6 +9,7 @@
   padding-bottom:env(safe-area-inset-bottom,0px);
   --bg:#f6f3ec;
   --surface:#ffffff;
+  --glass:rgba(255,255,255,.72);
   --ink:#1c1a17;
   --muted:#5d5950;
   --line:#e2dccf;
@@ -22,6 +23,7 @@
   :root:not([data-theme="light"]){
     --bg:#121417;
     --surface:#1b1f24;
+    --glass:rgba(27,31,36,.7);
     --ink:#f1ede4;
     --muted:#aaa497;
     --line:#2c3138;
@@ -35,6 +37,7 @@
 :root[data-theme="dark"]{
   --bg:#121417;
   --surface:#1b1f24;
+  --glass:rgba(27,31,36,.7);
   --ink:#f1ede4;
   --muted:#aaa497;
   --line:#2c3138;
@@ -47,6 +50,7 @@
 
 /* ---------- 2. Base ---------- */
 *,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
 html{
   scroll-behavior:smooth;
   scroll-padding-top:calc(64px + env(safe-area-inset-top,0px));
@@ -65,6 +69,21 @@ body::before{
   background:var(--surface);
   z-index:20;
 }
+body.modal-open{overflow:hidden}
+
+/* ---------- 2b. Background layers ---------- */
+/* Fallback gradient (tampil jika WebGL/Three.js tidak tersedia) */
+.bg-fallback{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(60% 50% at 80% 10%,rgba(95,208,179,.18),transparent 70%),
+    radial-gradient(50% 45% at 10% 90%,rgba(29,107,88,.2),transparent 70%);
+  transition:opacity .6s ease;
+}
+body.has-3d .bg-fallback{opacity:0}
 
 /* ---------- 3. Progress bar & navigation ---------- */
 #progress{
@@ -86,7 +105,9 @@ nav{
   align-items:center;
   gap:6px;
   padding:12px 20px;
-  background:var(--surface);
+  background:var(--glass);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
   overflow-x:auto;
 }
@@ -102,6 +123,26 @@ nav a{
   transition:background .3s,color .3s;
 }
 nav a:hover,nav a.active{background:var(--accent-soft);color:var(--accent)}
+
+/* ---------- 3b. Auth controls in navbar ---------- */
+.auth{display:flex;align-items:center;gap:8px;flex:none}
+.auth-btn{
+  font:600 13px Inter,system-ui,sans-serif;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid var(--accent);
+  background:var(--accent);
+  color:var(--bg);
+  cursor:pointer;
+  white-space:nowrap;
+  transition:transform .2s,background .3s,color .3s;
+}
+.auth-btn:hover{transform:translateY(-1px)}
+.auth-btn.ghost{background:transparent;color:var(--accent)}
+.auth-btn.ghost:hover{background:var(--accent-soft)}
+.auth-btn:focus-visible,.link-btn:focus-visible,.mtab:focus-visible,.modal-close:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.user-chip{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);max-width:220px}
+.user-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink);font-weight:600}
 
 /* ---------- 4. Typography & layout ---------- */
 section{max-width:1080px;margin:0 auto;padding:96px 24px}
@@ -130,7 +171,9 @@ h3{font:600 22px/1.25 Fraunces,Georgia,serif;margin:0 0 8px}
   overflow:hidden;
   border-radius:28px;
   padding:64px 40px;
-  background:var(--surface);
+  background:var(--glass);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
   border:1px solid var(--line);
 }
 .hero-art{
@@ -154,7 +197,7 @@ h3{font:600 22px/1.25 Fraunces,Georgia,serif;margin:0 0 8px}
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 }
 .card{
-  background:var(--surface);
+  background:var(--glass);
   border:1px solid var(--line);
   border-radius:20px;
   padding:24px;
@@ -182,7 +225,7 @@ h3{font:600 22px/1.25 Fraunces,Georgia,serif;margin:0 0 8px}
 
 /* ---------- 8. Accordion (details / summary) ---------- */
 details{
-  background:var(--surface);
+  background:var(--glass);
   border:1px solid var(--line);
   border-radius:16px;
   margin:0 0 12px;
@@ -213,7 +256,9 @@ details[open]>summary::after{transform:rotate(45deg)}
 
 /* ---------- 9. Information box & hierarchy rows ---------- */
 .box{
-  background:var(--surface);
+  background:var(--glass);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
   border:1px solid var(--line);
   border-radius:20px;
   padding:24px 26px;
@@ -275,7 +320,7 @@ details[open]>summary::after{transform:rotate(45deg)}
 .tab{
   flex:none;
   border:1px solid var(--line);
-  background:var(--surface);
+  background:var(--glass);
   color:var(--ink);
   font:500 14px Inter,system-ui,sans-serif;
   padding:10px 18px;
@@ -286,7 +331,9 @@ details[open]>summary::after{transform:rotate(45deg)}
 .tab:hover{border-color:var(--accent)}
 .tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .panel{
-  background:var(--surface);
+  background:var(--glass);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
   border:1px solid var(--line);
   border-radius:22px;
   padding:30px;
@@ -294,7 +341,6 @@ details[open]>summary::after{transform:rotate(45deg)}
   box-shadow:var(--shadow);
   animation:fade .5s ease;
 }
-.panel[hidden]{display:none}
 .panel p{margin:0;color:var(--muted)}
 @keyframes fade{
   from{opacity:0;transform:translateY(8px)}
@@ -305,7 +351,7 @@ details[open]>summary::after{transform:rotate(45deg)}
 .flow{display:flex;flex-wrap:wrap;gap:12px}
 .step{
   flex:1 1 150px;
-  background:var(--surface);
+  background:var(--glass);
   border:1px solid var(--line);
   border-radius:18px;
   padding:20px 16px;
@@ -330,7 +376,7 @@ details[open]>summary::after{transform:rotate(45deg)}
   text-align:center;
   padding:120px 24px 110px;
   max-width:none;
-  background:linear-gradient(180deg,var(--bg),var(--accent-soft) 70%,var(--surface) 100%);
+  background:linear-gradient(180deg,transparent,var(--accent-soft) 70%,transparent);
 }
 .closing>div{position:relative;z-index:1;max-width:760px;margin:0 auto}
 .ring{
@@ -379,21 +425,112 @@ details[open]>summary::after{transform:rotate(45deg)}
 /* ---------- 15. Footer ---------- */
 footer{
   border-top:1px solid var(--line);
-  background:var(--surface);
+  background:var(--glass);
   text-align:center;
   color:var(--muted);
   font-size:14px;
   padding:28px 24px;
 }
 
-/* ---------- 16. Responsive ---------- */
+/* ---------- 16. Auth modal ---------- */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:grid;
+  place-items:center;
+  padding:20px;
+}
+.modal-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  -webkit-backdrop-filter:blur(4px);
+  backdrop-filter:blur(4px);
+}
+.modal-card{
+  position:relative;
+  width:100%;
+  max-width:420px;
+  max-height:90vh;
+  overflow:auto;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+.modal-card h3{margin:0 0 14px}
+.modal-close{
+  position:absolute;
+  top:10px;
+  right:12px;
+  background:none;
+  border:0;
+  font-size:26px;
+  line-height:1;
+  color:var(--muted);
+  cursor:pointer;
+}
+.modal-tabs{display:flex;gap:8px;margin-bottom:16px}
+.mtab{
+  flex:1;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--muted);
+  font:600 14px Inter,system-ui,sans-serif;
+  cursor:pointer;
+}
+.mtab[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-size:13px;font-weight:600;color:var(--muted)}
+.field input{
+  font:15px Inter,system-ui,sans-serif;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--bg);
+  color:var(--ink);
+}
+.field input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.field input.invalid{border-color:var(--warm)}
+.field small{color:var(--warm);font-size:12px;min-height:0}
+.form-btn{
+  width:100%;
+  padding:13px;
+  border-radius:12px;
+  border:0;
+  background:var(--accent);
+  color:var(--bg);
+  font:600 15px Inter,system-ui,sans-serif;
+  cursor:pointer;
+}
+.form-btn:disabled{opacity:.6;cursor:wait}
+.link-btn{
+  background:none;
+  border:0;
+  color:var(--accent);
+  font:500 14px Inter,system-ui,sans-serif;
+  cursor:pointer;
+  padding:8px 0;
+  text-decoration:underline;
+}
+.form-row{display:flex;justify-content:space-between;align-items:center}
+.form-msg{margin:14px 0 0;font-size:14px;min-height:20px}
+.form-msg.error{color:var(--warm)}
+.form-msg.ok{color:var(--accent)}
+
+/* ---------- 17. Responsive ---------- */
 @media (max-width:560px){
   .lvl{grid-template-columns:1fr;gap:2px}
   .hero{padding:40px 22px}
   section{padding:72px 18px}
+  .brand{font-size:15px}
 }
 
-/* ---------- 17. Reduced motion ---------- */
+/* ---------- 18. Reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
