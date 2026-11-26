@@ -47,7 +47,6 @@ function start() {
   glowB.position.set(6, -4, 4);
   scene.add(glowB);
 
-  // Material
   const glass = new THREE.MeshPhysicalMaterial({
     color: 0x8ff0d2, transparent: true, opacity: 0.32,
     roughness: 0.12, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.08,
@@ -60,7 +59,6 @@ function start() {
     color: 0x5fd0b3, wireframe: true, transparent: true, opacity: 0.18
   });
 
-  // Objek melayang
   const items = [];
   function addItem(mesh, base) {
     rig.add(mesh);
@@ -72,7 +70,6 @@ function start() {
     });
   }
 
-  // Bola kaca transparan
   const nSphere = mobile ? 4 : 7;
   for (let i = 0; i < nSphere; i++) {
     const r = rnd(0.5, 1.4);
@@ -81,7 +78,6 @@ function start() {
       { x: rnd(-8, 8), y: rnd(-4.5, 4.5), z: rnd(-5, 1) }
     );
   }
-  // Cincin 3D
   const nTorus = mobile ? 2 : 4;
   for (let i = 0; i < nTorus; i++) {
     const m = new THREE.Mesh(
@@ -90,7 +86,6 @@ function start() {
     m.rotation.set(rnd(0, 3), rnd(0, 3), 0);
     addItem(m, { x: rnd(-9, 9), y: rnd(-4, 4), z: rnd(-6, 0) });
   }
-  // Bentuk geometris abstrak (wireframe)
   const nIco = mobile ? 2 : 4;
   for (let i = 0; i < nIco; i++) {
     addItem(
@@ -99,7 +94,6 @@ function start() {
     );
   }
 
-  // Partikel kecil
   const nP = mobile ? 120 : 300;
   const pos = new Float32Array(nP * 3);
   for (let i = 0; i < nP; i++) {
@@ -114,7 +108,6 @@ function start() {
   }));
   rig.add(points);
 
-  // Gelombang liquid glass
   const wGeo = new THREE.PlaneGeometry(40, 16, mobile ? 30 : 60, mobile ? 10 : 20);
   const wave = new THREE.Mesh(wGeo, new THREE.MeshStandardMaterial({
     color: 0x1d6b58, transparent: true, opacity: 0.22,
@@ -125,7 +118,6 @@ function start() {
   rig.add(wave);
   const wBase = wGeo.attributes.position.array.slice();
 
-  // Ambient glow
   function glowTexture() {
     const c = document.createElement("canvas");
     c.width = c.height = 256;
@@ -147,7 +139,6 @@ function start() {
   s2.position.set(6, -3, -7);
   scene.add(s2);
 
-  // Ukuran & kamera
   function resize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -155,12 +146,7 @@ function start() {
     camera.updateProjectionMatrix();
   }
   resize();
-  window.addEventListener("resize", () => {
-    resize();
-    if (reduce) renderFrame(0);
-  });
 
-  // Parallax mouse
   let tx = 0, ty = 0;
   if (!reduce) {
     window.addEventListener("pointermove", (e) => {
@@ -193,7 +179,11 @@ function start() {
     renderer.render(scene, camera);
   }
 
-  // Loop: berhenti saat tab tidak aktif, dan dimatikan jika reduced motion
+  window.addEventListener("resize", () => {
+    resize();
+    if (reduce) renderFrame(0);
+  });
+
   const clock = new THREE.Clock(false);
   let raf = 0;
   function loop() {
