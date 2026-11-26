@@ -2,7 +2,6 @@
    Cyberio — auth.js
    Firebase Authentication (Email & Password).
    GANTI nilai firebaseConfig dengan konfigurasi project kamu.
-   Lihat README.md untuk langkahnya.
    ========================================================== */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
@@ -26,7 +25,6 @@ const firebaseConfig = {
 const isConfigured = !firebaseConfig.apiKey.startsWith("ISI_");
 const auth = isConfigured ? getAuth(initializeApp(firebaseConfig)) : null;
 
-/* ---------- Elemen ---------- */
 const $ = (id) => document.getElementById(id);
 const el = {
   btnLogin: $("btnLogin"),
@@ -47,9 +45,9 @@ const TITLES = {
   register: "Buat akun Cyberio",
   reset: "Atur ulang kata sandi"
 };
+const NOT_CONFIGURED = "Firebase belum dikonfigurasi. Lihat README.md.";
 let lastFocus = null;
 
-/* ---------- Pesan & validasi ---------- */
 const ERRORS = {
   "auth/invalid-email": "Format email tidak valid.",
   "auth/user-not-found": "Email atau kata sandi salah.",
@@ -84,7 +82,6 @@ function fieldError(input, msg) {
   return !msg;
 }
 
-/* ---------- Modal ---------- */
 function showView(view) {
   el.loginForm.hidden = view !== "login";
   el.registerForm.hidden = view !== "register";
@@ -102,7 +99,7 @@ function openModal(view = "login") {
   el.modal.hidden = false;
   document.body.classList.add("modal-open");
   showView(view);
-  if (!auth) setMsg("Firebase belum dikonfigurasi. Lihat README.md.", "error");
+  if (!auth) setMsg(NOT_CONFIGURED, "error");
 }
 function closeModal() {
   el.modal.hidden = true;
@@ -125,9 +122,7 @@ async function withBusy(form, label, fn) {
   }
 }
 
-/* ---------- Event: buka/tutup modal ---------- */
 el.btnLogin.addEventListener("click", () => openModal("login"));
-
 document.querySelectorAll("[data-close]").forEach((n) => n.addEventListener("click", closeModal));
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !el.modal.hidden) closeModal();
@@ -136,10 +131,9 @@ document.querySelectorAll("[data-view]").forEach((n) => {
   n.addEventListener("click", () => showView(n.dataset.view));
 });
 
-/* ---------- Event: login ---------- */
 el.loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  if (!auth) return setMsg("Firebase belum dikonfigurasi. Lihat README.md.", "error");
+  if (!auth) return setMsg(NOT_CONFIGURED, "error");
   const email = $("loginEmail");
   const pass = $("loginPass");
   const okEmail = fieldError(email, validEmail(email.value) ? "" : "Format email tidak valid.");
@@ -156,10 +150,9 @@ el.loginForm.addEventListener("submit", async (e) => {
   });
 });
 
-/* ---------- Event: daftar ---------- */
 el.registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  if (!auth) return setMsg("Firebase belum dikonfigurasi. Lihat README.md.", "error");
+  if (!auth) return setMsg(NOT_CONFIGURED, "error");
   const email = $("regEmail");
   const pass = $("regPass");
   const confirm = $("regConfirm");
@@ -178,10 +171,9 @@ el.registerForm.addEventListener("submit", async (e) => {
   });
 });
 
-/* ---------- Event: reset password ---------- */
 el.resetForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  if (!auth) return setMsg("Firebase belum dikonfigurasi. Lihat README.md.", "error");
+  if (!auth) return setMsg(NOT_CONFIGURED, "error");
   const email = $("resetEmail");
   if (!fieldError(email, validEmail(email.value) ? "" : "Format email tidak valid.")) return;
 
@@ -195,7 +187,6 @@ el.resetForm.addEventListener("submit", async (e) => {
   });
 });
 
-/* ---------- Event: logout ---------- */
 el.btnLogout.addEventListener("click", async () => {
   if (!auth) return;
   try {
@@ -205,7 +196,6 @@ el.btnLogout.addEventListener("click", async () => {
   }
 });
 
-/* ---------- Status login (dipertahankan oleh Firebase antar kunjungan) ---------- */
 if (auth) {
   onAuthStateChanged(auth, (user) => {
     const loggedIn = !!user;
