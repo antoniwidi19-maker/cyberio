@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Digital Citizen: Section 6 hingga 9</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6f3ec;--surface:#ffffff;--ink:#1c1a17;--muted:#5d5950;--line:#e2dccf;--accent:#1d6b58;--accent-soft:#d9efe8;--warm:#e0743a;--warm-soft:#fbe6d9;--shadow:0 12px 32px -14px rgba(28,26,23,.22)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121417;--surface:#1b1f24;--ink:#f1ede4;--muted:#aaa497;--line:#2c3138;--accent:#5fd0b3;--accent-soft:#1d3a33;--warm:#f19a62;--warm-soft:#3a271c;--shadow:0 12px 32px -14px rgba(0,0,0,.7)}}
+:root[data-theme="dark"]{--bg:#121417;--surface:#1b1f24;--ink:#f1ede4;--muted:#aaa497;--line:#2c3138;--accent:#5fd0b3;--accent-soft:#1d3a33;--warm:#f19a62;--warm-soft:#3a271c;--shadow:0 12px 32px -14px rgba(0,0,0,.7)}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:20}
+#progress{position:fixed;top:env(safe-area-inset-top,0px);left:0;width:100%;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;z-index:30}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:15;display:flex;align-items:center;gap:6px;padding:12px 20px;background:var(--surface);border-bottom:1px solid var(--line);overflow-x:auto}
+.brand{font:800 17px Fraunces,Georgia,serif;margin-right:auto;white-space:nowrap}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 12px;border-radius:999px;white-space:nowrap;transition:background .3s,color .3s}
+nav a:hover,nav a.active{background:var(--accent-soft);color:var(--accent)}
+section{max-width:1080px;margin:0 auto;padding:96px 24px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+h2{font:800 clamp(36px,6vw,68px)/1.02 Fraunces,Georgia,serif;letter-spacing:-.02em;margin:0 0 16px}
+h3{font:600 22px/1.25 Fraunces,Georgia,serif;margin:0 0 8px}
+.lead{font-size:18px;color:var(--muted);max-width:680px;margin:0}
+.sub{margin:72px 0 22px}
+.num{font-size:13px;color:var(--warm);font-weight:700;letter-spacing:.1em}
+.hero{position:relative;overflow:hidden;border-radius:28px;padding:64px 40px;background:var(--surface);border:1px solid var(--line)}
+.hero-art{position:absolute;inset:-80px;background:radial-gradient(circle at 78% 22%,var(--accent-soft),transparent 45%),radial-gradient(circle at 12% 92%,var(--warm-soft),transparent 42%);will-change:transform}
+.hero>*:not(.hero-art){position:relative}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow);transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.card:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 22px 40px -18px rgba(29,107,88,.35)}
+.card p{margin:0 0 8px;color:var(--muted);font-size:15px}
+.icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:var(--accent-soft);margin-bottom:14px;transition:transform .35s ease}
+.card:hover .icon{transform:rotate(-8deg) scale(1.08)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:16px;margin:0 0 12px;transition:border-color .3s}
+details[open]{border-color:var(--accent)}
+summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:22px;line-height:1;color:var(--accent);transition:transform .3s}
+details[open]>summary::after{transform:rotate(45deg)}
+.ab{padding:0 20px 18px;color:var(--muted);font-size:15px}
+.ab p{margin:0 0 8px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px 26px;box-shadow:var(--shadow)}
+.lvl{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:12px 0;border-top:1px dashed var(--line)}
+.lvl:first-child{border-top:0}
+.lvl b{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-top:3px}
+.lvl span{color:var(--muted)}
+.tl{position:relative;margin-left:8px;padding-left:32px;border-left:2px solid var(--line)}
+.tl details{position:relative}
+.tl details::before{content:"";position:absolute;left:-41px;top:22px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--accent);transition:background .3s}
+.tl details[open]::before,.tl details:hover::before{background:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:16px 0 0}
+.chips li{background:var(--warm-soft);padding:10px 14px;border-radius:12px;font-size:15px;transition:transform .3s}
+.chips li:hover{transform:translateY(-3px)}
+.net{width:100%;height:auto;display:block}
+.net line{stroke:var(--accent);stroke-width:2;stroke-dasharray:6 8;opacity:.6;animation:flow 1.6s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-28}}
+.net rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5;transition:stroke .3s}
+.net g:hover rect{stroke:var(--accent)}
+.net text{fill:var(--ink);font:600 14px Inter,system-ui,sans-serif}
+.net .core{fill:var(--accent)}
+.net .ct{fill:var(--bg);font:700 15px Inter,system-ui,sans-serif}
+.caption{font-size:14px;color:var(--muted);margin:14px 0 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 12px;margin-bottom:8px}
+.tab{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 14px Inter,system-ui,sans-serif;padding:10px 18px;border-radius:999px;cursor:pointer;transition:all .3s}
+.tab:hover{border-color:var(--accent)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:30px;min-height:170px;box-shadow:var(--shadow);animation:fade .5s ease}
+.panel[hidden]{display:none}
+.panel p{margin:0;color:var(--muted)}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.flow{display:flex;flex-wrap:wrap;gap:12px}
+.step{flex:1 1 150px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 16px;text-align:center;opacity:0;transform:translateY(14px);transition:border-color .3s}
+.step:hover{border-color:var(--accent)}
+.flow.in .step{animation:rise .6s ease forwards;animation-delay:calc(var(--i)*.15s)}
+@keyframes rise{to{opacity:1;transform:none}}
+.step b{display:block;font:800 28px Fraunces,Georgia,serif;color:var(--warm)}
+.step span{font-weight:600;font-size:15px}
+.closing{position:relative;overflow:hidden;text-align:center;padding:120px 24px 110px;max-width:none;background:linear-gradient(180deg,var(--bg),var(--accent-soft) 70%,var(--surface) 100%)}
+.closing>div{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.ring{position:absolute;left:50%;top:50%;width:560px;height:560px;margin:-280px 0 0 -280px;border:1px solid var(--accent);border-radius:50%;opacity:.25;animation:pulse 7s ease-in-out infinite}
+.ring.r2{width:820px;height:820px;margin:-410px 0 0 -410px;animation-delay:-3.5s}
+@keyframes pulse{0%,100%{transform:scale(.96);opacity:.12}50%{transform:scale(1.03);opacity:.32}}
+.tagline{font:800 clamp(30px,5.2vw,58px)/1.08 Fraunces,Georgia,serif;letter-spacing:-.01em;margin:8px 0 22px}
+.actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.btn{display:inline-block;padding:16px 28px;border-radius:999px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;font:600 14px Inter,system-ui,sans-serif;letter-spacing:.1em;transition:background .3s,color .3s,transform .3s}
+.btn:hover{background:var(--ink);color:var(--bg);transform:translateY(-2px)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn.primary:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+footer{border-top:1px solid var(--line);background:var(--surface);text-align:center;color:var(--muted);font-size:14px;padding:28px 24px}
+@media (max-width:560px){.lvl{grid-template-columns:1fr;gap:2px}.hero{padding:40px 22px}section{padding:72px 18px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.reveal,.step{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body id="top">
+<div id="progress"></div>
+<nav aria-label="Navigasi section">
+  <span class="brand">Digital Citizen</span>
+  <a href="#section6">06 Privasi</a>
+  <a href="#section7">07 Literasi</a>
+  <a href="#section8">08 Pilihan</a>
+  <a href="#section9">09 Aksi</a>
+</nav>
+
+<section id="section6">
+  <div class="hero reveal">
+    <div class="hero-art" id="parallax" aria-hidden="true"></div>
+    <p class="eyebrow">SECTION 6 — DIGITAL PRIVACY AND SECURITY</p>
+    <h2>YOUR DATA.<br>YOUR RESPONSIBILITY.</h2>
+    <p class="lead">Setiap klik, unggahan, dan pencarian meninggalkan jejak. Memahami privasi dan keamanan digital membantu kamu tetap memegang kendali atas informasi tentang dirimu sendiri.</p>
+  </div>
+
+  <div class="sub"><span class="num">06.1</span><h3>Pengertian privasi digital</h3></div>
+  <details open><summary>Apa itu privasi dan keamanan digital?</summary>
+    <div class="ab">
+      <p>Privasi digital adalah hak seseorang untuk menentukan informasi pribadi apa yang dibagikan, kepada siapa, dan untuk tujuan apa. Keamanan digital adalah upaya melindungi data dan akun dari akses atau penyalahgunaan oleh pihak yang tidak berhak.</p>
+      <p>Keduanya saling melengkapi: privasi berbicara tentang kendali, sedangkan keamanan berbicara tentang perlindungan.</p>
+    </div>
+  </details>
+
+  <div class="sub"><span class="num">06.2</span><h3>Jenis-jenis data pribadi</h3></div>
+  <div class="grid reveal">
+    <article class="card"><div class="icon">🪪</div><h3>Data identitas</h3><p>Nama lengkap, tanggal lahir, nomor KTP atau paspor.</p><p><em>Contoh:</em> foto KTP yang diunggah ke grup chat.</p></article>
+    <article class="card"><div class="icon">📇</div><h3>Data kontak</h3><p>Alamat email, nomor telepon, alamat rumah.</p><p><em>Contoh:</em> nomor HP dipakai untuk mengirim spam atau penipuan.</p></article>
+    <article class="card"><div class="icon">💳</div><h3>Data keuangan</h3><p>Nomor rekening, nomor kartu, riwayat transaksi.</p><p><em>Contoh:</em> nomor kartu diberikan kepada “admin” palsu.</p></article>
+    <article class="card"><div class="icon">📍</div><h3>Data perangkat dan aktivitas</h3><p>Alamat IP, lokasi, riwayat pencarian, kebiasaan menjelajah.</p><p><em>Contoh:</em> rutinitas harian bisa dibaca dari pola lokasi.</p></article>
+    <article class="card"><div class="icon">🧬</div><h3>Data sensitif dan biometrik</h3><p>Wajah, sidik jari, suara, kondisi kesehatan, agama dan keyakinan.</p><p><em>Contoh:</em> foto wajah dipakai untuk verifikasi palsu.</p></article>
+  </div>
+
+  <div class="sub"><span class="num">06.3</span><h3>Risiko membagikan informasi sembarangan</h3></div>
+  <details open><summary>Disalahgunakan untuk penipuan</summary><div class="ab"><p>Potongan data yang tampak sepele bisa dirangkai menjadi identitas yang meyakinkan untuk menipu orang lain.</p></div></details>
+  <details><summary>Jejak yang sulit dihapus</summary><div class="ab"><p>Sekali tersebar, salinan informasi bisa muncul di banyak tempat dan tidak mudah ditarik kembali.</p></div></details>
+  <details><summary>Pola hidup dapat dilacak</summary><div class="ab"><p>Jadwal, lokasi, dan rutinitas bisa dibaca oleh orang asing, yang berpotensi membahayakan keselamatan.</p></div></details>
+  <details><summary>Dampak sosial dan emosional</summary><div class="ab"><p>Perundungan, rasa malu, kecemasan, dan hilangnya rasa aman sering menjadi akibat dari data yang tersebar.</p></div></details>
+
+  <div class="sub"><span class="num">06.3.1</span><h3>Infografis: bagaimana informasi pribadi bisa tersebar</h3></div>
+  <div class="box reveal">
+    <svg class="net" viewBox="0 0 640 380" role="img" aria-label="Diagram ilustratif penyebaran informasi pribadi">
+      <line x1="320" y1="190" x2="110" y2="70"/>
+      <line x1="320" y1="190" x2="320" y2="62"/>
+      <line x1="320" y1="190" x2="530" y2="70"/>
+      <line x1="320" y1="190" x2="110" y2="310"/>
+      <line x1="320" y1="190" x2="320" y2="318"/>
+      <line x1="320" y1="190" x2="530" y2="310"/>
+      <g><rect x="40" y="42" width="140" height="56" rx="14"/><text x="110" y="75" text-anchor="middle">Media sosial</text></g>
+      <g><rect x="250" y="34" width="140" height="56" rx="14"/><text x="320" y="67" text-anchor="middle">Aplikasi</text></g>
+      <g><rect x="460" y="42" width="140" height="56" rx="14"/><text x="530" y="75" text-anchor="middle">Forum &amp; grup</text></g>
+      <g><rect x="40" y="282" width="140" height="56" rx="14"/><text x="110" y="315" text-anchor="middle">Toko daring</text></g>
+      <g><rect x="250" y="290" width="140" height="56" rx="14"/><text x="320" y="323" text-anchor="middle">Situs tak dikenal</text></g>
+      <g><rect x="460" y="282" width="140" height="56" rx="14"/><text x="530" y="315" text-anchor="middle">Layanan data</text></g>
+      <circle class="core" cx="320" cy="190" r="58"/>
+      <text class="ct" x="320" y="186" text-anchor="middle">Data</text>
+      <text class="ct" x="320" y="206" text-anchor="middle">kamu</text>
+    </svg>
+    <p class="caption">Ilustrasi sederhana: satu unggahan kecil dapat disalin, dibagikan ulang, dan dihubungkan dengan data lain. Diagram ini menggambarkan pola umum, bukan data nyata.</p>
+  </div>
+
+  <div class="sub"><span class="num">06.4</span><h3>Pencurian identitas digital</h3></div>
+  <div class="box reveal">
+    <div class="lvl"><b>Pengertian</b><span>Data pribadi seseorang diambil dan dipakai tanpa izin, misalnya untuk membuka akun, mengajukan pinjaman, atau bertransaksi atas nama korban.</span></div>
+    <div class="lvl"><b>Penyebab</b><span>Kata sandi yang lemah atau dipakai di banyak layanan, kebocoran data dari layanan yang diretas, serta kebiasaan membagikan dokumen identitas secara terbuka.</span></div>
+    <div class="lvl"><b>Bentuk</b><span>Pembuatan akun baru atas nama korban, pinjaman daring yang tidak pernah dibuat korban, dan pengambilalihan nomor telepon untuk menerima kode verifikasi.</span></div>
+    <div class="lvl"><b>Dampak</b><span>Kerugian finansial, nama baik yang tercemar, serta waktu dan tenaga besar untuk memulihkan identitas.</span></div>
+    <div class="lvl"><b>Contoh</b><span>Pelaku menghubungi korban dengan mengaku dari layanan resmi lalu meminta kode OTP, yang ternyata dipakai untuk mengambil alih akun e-wallet korban.</span></div>
+    <div class="lvl"><b>Solusi</b><span>Jangan pernah membagikan kode OTP, gunakan kata sandi unik untuk setiap layanan, aktifkan verifikasi dua langkah, dan rutin memeriksa mutasi serta notifikasi akun.</span></div>
+  </div>
+
+  <div class="sub"><span class="num">06.5</span><h3>Phishing dan penipuan online</h3></div>
+  <div class="box reveal">
+    <div class="lvl"><b>Pengertian</b><span>Phishing adalah upaya menipu korban agar memberikan data sensitif dengan menyamar sebagai pihak yang tepercaya. Klik setiap tahap di bawah untuk melihat alurnya.</span></div>
+  </div>
+  <div class="tl" style="margin-top:20px">
+    <details open><summary>1 · Umpan</summary><div class="ab"><p>Pesan datang lewat SMS, email, atau chat yang mengaku dari bank, kurir, atau instansi, sering dengan kalimat yang mendesak.</p></div></details>
+    <details><summary>2 · Tautan tiruan</summary><div class="ab"><p>Korban diarahkan ke halaman yang tampak resmi, tetapi alamatnya sedikit berbeda, misalnya salah eja atau memakai domain asing.</p></div></details>
+    <details><summary>3 · Pengambilan data</summary><div class="ab"><p>Korban diminta memasukkan kata sandi, PIN, atau kode OTP yang langsung diteruskan kepada pelaku.</p></div></details>
+    <details><summary>4 · Penyalahgunaan</summary><div class="ab"><p>Saldo dikuras, identitas dipakai untuk pinjaman, atau akun korban dipakai untuk menipu kontak terdekatnya.</p></div></details>
+  </div>
+  <div class="box reveal" style="margin-top:20px">
+    <div class="lvl"><b>Tanda pesan palsu</b><span>Ada desakan waktu, alamat tautan yang sedikit berbeda, permintaan kata sandi atau OTP, dan hadiah yang terlalu bagus.</span></div>
+    <div class="lvl"><b>Dampak</b><span>Akun dibobol, uang hilang, dan data pribadi dapat dijual atau disalahgunakan lebih lanjut.</span></div>
+    <div class="lvl"><b>Solusi</b><span>Jangan klik tautan dari pesan yang tidak diminta, ketik alamat situs secara manual, dan verifikasi langsung melalui kontak resmi lembaga atau penyedia layanan.</span></div>
+  </div>
+
+  <div class="sub"><span class="num">06.6</span><h3>Penyalahgunaan foto dan informasi pribadi</h3></div>
+  <details open><summary>Doxxing</summary><div class="ab"><p>Menyebarkan alamat, nomor telepon, atau tempat kerja seseorang untuk menakut-nakuti atau menyerang. Dampaknya nyata di dunia fisik. Solusinya: laporkan dan minta bantuan pihak berwenang bila ada ancaman.</p></div></details>
+  <details><summary>Manipulasi foto dan deepfake</summary><div class="ab"><p>Wajah atau tubuh seseorang diedit, bahkan dibuat menjadi video palsu, untuk mempermalukan atau memeras. Hasilnya sering tampak meyakinkan, sehingga korban perlu segera menyimpan bukti dan melapor.</p></div></details>
+  <details><summary>Penyebaran tanpa izin</summary><div class="ab"><p>Foto atau video pribadi di-screenshot, diunggah ulang, atau dikirim ke grup lain tanpa persetujuan. Simpan bukti, laporkan ke platform, dan minta dukungan orang tepercaya.</p></div></details>
+  <details><summary>Akun palsu dengan foto curian</summary><div class="ab"><p>Foto dari media sosial dipakai untuk membuat akun yang menipu teman atau keluarga. Batasi siapa yang bisa melihat fotomu dan beri tahu kontak terdekat jika ada akun yang mengatasnamakanmu.</p></div></details>
+
+  <div class="sub"><span class="num">06.7</span><h3>Cara menjaga keamanan akun dan data pribadi</h3></div>
+  <div class="grid reveal">
+    <article class="card"><div class="icon">🔑</div><h3>Kata sandi kuat dan unik</h3><p>Gunakan kombinasi panjang dan kata sandi berbeda untuk tiap layanan. Pengelola kata sandi membantu mengingatnya.</p></article>
+    <article class="card"><div class="icon">🛡️</div><h3>Verifikasi dua langkah</h3><p>Aktifkan 2FA melalui aplikasi autentikator bila tersedia, karena kata sandi saja sering tidak cukup.</p></article>
+    <article class="card"><div class="icon">📱</div><h3>Periksa izin aplikasi</h3><p>Cabut akses yang tidak perlu ke kamera, lokasi, dan daftar kontak.</p></article>
+    <article class="card"><div class="icon">📶</div><h3>Hati-hati Wi-Fi publik</h3><p>Hindari login akun penting di jaringan umum tanpa perlindungan tambahan.</p></article>
+    <article class="card"><div class="icon">🔄</div><h3>Perbarui perangkat</h3><p>Pasang pembaruan sistem dan aplikasi secara berkala untuk menutup celah keamanan.</p></article>
+    <article class="card"><div class="icon">👁️</div><h3>Atur privasi media sosial</h3><p>Batasi siapa yang bisa melihat unggahan dan informasi kontakmu.</p></article>
+  </div>
+</section>
+
+<section id="section7">
+  <div class="hero reveal">
+    <p class="eyebrow">SECTION 7 — DIGITAL LITERACY</p>
+    <h2>BECOME A SMART DIGITAL CITIZEN.</h2>
+    <p class="lead">Literasi digital adalah kemampuan menggunakan teknologi digital secara efektif untuk mencari, memahami, menilai, dan membuat informasi, serta berpartisipasi di ruang digital secara aman dan bertanggung jawab. Kemampuan ini dibutuhkan saat belajar daring, mengurus layanan publik, bekerja, hingga berinteraksi dengan orang lain setiap hari.</p>
+  </div>
+
+  <div class="sub"><span class="num">07.1</span><h3>Pilih submateri</h3></div>
+  <div class="tabs" role="tablist" aria-label="Submateri literasi digital">
+    <button class="tab" role="tab" aria-selected="true" aria-controls="p1">Memilah informasi</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p2">Berpikir kritis</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p3">Etika berkomunikasi</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p4">Menghargai perbedaan</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p5">Menjaga jejak digital</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p6">Teknologi produktif</button>
+  </div>
+  <div class="panel" id="p1" role="tabpanel"><h3>Memilah informasi</h3><p>Tidak semua yang tampil di layar layak dipercaya. Biasakan membedakan fakta, opini, dan hoaks dengan menanyakan siapa penulisnya, kapan diterbitkan, apa buktinya, dan apakah sumber lain menyatakan hal yang sama.</p></div>
+  <div class="panel" id="p2" role="tabpanel" hidden><h3>Berpikir kritis</h3><p>Judul yang memancing emosi, tangkapan layar tanpa konteks, dan gambar yang mungkin sudah diedit adalah tanda untuk berhenti sejenak. Tanyakan: apakah ini benar, apakah perlu dibagikan, dan apakah aman bagi orang lain?</p></div>
+  <div class="panel" id="p3" role="tabpanel" hidden><h3>Etika berkomunikasi</h3><p>Komunikasi daring kehilangan ekspresi wajah dan nada suara, sehingga pesan mudah disalahpahami. Gunakan bahasa yang sopan, hindari huruf kapital berlebihan, dan jangan menyebarkan fitnah atau ujaran kebencian.</p></div>
+  <div class="panel" id="p4" role="tabpanel" hidden><h3>Menghargai perbedaan pendapat</h3><p>Perbedaan pendapat adalah hal wajar dalam masyarakat yang beragam. Tanggapi argumennya, bukan pribadi orangnya, dan beri ruang bagi orang lain untuk menjelaskan sudut pandangnya sebelum menilai.</p></div>
+  <div class="panel" id="p5" role="tabpanel" hidden><h3>Menjaga jejak digital</h3><p>Setiap unggahan, komentar, dan reaksi membentuk jejak yang bisa bertahan lama dan dilihat banyak orang, termasuk sekolah, kampus, atau calon pemberi kerja. Biasakan bertanya apakah unggahan ini tetap nyaman jika dibaca bertahun-tahun lagi.</p></div>
+  <div class="panel" id="p6" role="tabpanel" hidden><h3>Menggunakan teknologi secara produktif</h3><p>Gunakan teknologi untuk belajar, berkarya, berkolaborasi, dan memecahkan masalah. Atur waktu layar agar tidak mengganggu tidur, istirahat, dan interaksi langsung dengan keluarga dan teman.</p></div>
+
+  <div class="sub"><span class="num">07.2</span><h3>Infografis: lima langkah sebelum membagikan</h3></div>
+  <div class="flow reveal">
+    <div class="step" style="--i:0"><b>1</b><span>Berhenti sejenak</span></div>
+    <div class="step" style="--i:1"><b>2</b><span>Periksa sumbernya</span></div>
+    <div class="step" style="--i:2"><b>3</b><span>Cek buktinya</span></div>
+    <div class="step" style="--i:3"><b>4</b><span>Pikirkan dampaknya</span></div>
+    <div class="step" style="--i:4"><b>5</b><span>Baru bagikan</span></div>
+  </div>
+</section>
+
+<section id="section8">
+  <div class="hero reveal">
+    <p class="eyebrow">SECTION 8 — HOW TO BE A RESPONSIBLE DIGITAL CITIZEN</p>
+    <h2>MAKE BETTER DIGITAL CHOICES.</h2>
+    <p class="lead">Panduan praktis berikut dapat kamu terapkan mulai hari ini. Buka setiap kartu untuk melihat langkah-langkah yang bisa dilakukan.</p>
+  </div>
+  <div class="sub"></div>
+  <div class="grid reveal">
+    <article class="card"><div class="icon">🔎</div><h3>THINK BEFORE YOU SHARE</h3><p>Periksa kebenaran informasi sebelum membagikannya.</p><details><summary>Langkah praktis</summary><div class="ab"><p>Cek apakah judul sesuai dengan isi, cari berita yang sama di media atau instansi resmi, dan jangan meneruskan pesan berantai yang mendesak untuk segera disebarkan.</p></div></details></article>
+    <article class="card"><div class="icon">🤝</div><h3>RESPECT OTHERS</h3><p>Gunakan bahasa yang baik dan hindari perundungan digital.</p><details><summary>Langkah praktis</summary><div class="ab"><p>Jangan mempermalukan orang di kolom komentar, hormati privasi orang lain dengan tidak mengunggah foto mereka tanpa izin, dan laporkan konten yang merendahkan.</p></div></details></article>
+    <article class="card"><div class="icon">🔐</div><h3>PROTECT YOUR PRIVACY</h3><p>Jangan sembarangan membagikan informasi pribadi.</p><details><summary>Langkah praktis</summary><div class="ab"><p>Pikirkan dua kali sebelum mengunggah alamat, nomor telepon, atau jadwal harianmu. Periksa siapa yang bisa melihat unggahanmu dan berhati-hati dengan kuis atau formulir yang meminta data pribadi.</p></div></details></article>
+    <article class="card"><div class="icon">✅</div><h3>VERIFY INFORMATION</h3><p>Periksa sumber dan bukti informasi.</p><details><summary>Langkah praktis</summary><div class="ab"><p>Telusuri siapa penulis dan lembaga di balik informasi, bandingkan dengan dua atau tiga sumber tepercaya, dan periksa asal gambar dengan fitur pencarian gambar terbalik.</p></div></details></article>
+    <article class="card"><div class="icon">⏱️</div><h3>CONTROL YOUR DIGITAL HABITS</h3><p>Gunakan teknologi secara seimbang.</p><details><summary>Langkah praktis</summary><div class="ab"><p>Tetapkan jam bebas gawai, terutama sebelum tidur. Matikan notifikasi yang tidak penting dan sisihkan waktu untuk aktivitas tanpa layar.</p></div></details></article>
+    <article class="card"><div class="icon">🌱</div><h3>BUILD A POSITIVE DIGITAL ENVIRONMENT</h3><p>Gunakan internet untuk kegiatan yang bermanfaat.</p><details><summary>Langkah praktis</summary><div class="ab"><p>Ikuti kanal belajar dan komunitas yang positif, bagikan pengetahuan yang bermanfaat, dan dukung teman yang sedang kesulitan dengan empati. Arahkan mereka ke bantuan profesional bila diperlukan.</p></div></details></article>
+  </div>
+</section>
+
+<section id="section9" class="closing">
+  <div class="ring" aria-hidden="true"></div>
+  <div class="ring r2" aria-hidden="true"></div>
+  <div class="reveal">
+    <p class="eyebrow">SECTION 9 — TAKE ACTION</p>
+    <h2>THE CHANGE STARTS WITH YOU.</h2>
+    <p class="tagline">Every Click Has an Impact. Make Yours Matter.</p>
+    <p class="lead" style="margin:0 auto">Perubahan tidak harus besar. Mulailah dari satu kebiasaan hari ini: periksa satu informasi sebelum dibagikan, atur satu pengaturan privasi, atau tanggapi satu komentar yang merendahkan dengan kalimat yang lebih baik.</p>
+    <div class="actions">
+      <a class="btn primary" href="#section6">EXPLORE AGAIN</a>
+      <a class="btn" href="#top">BACK TO TOP</a>
+    </div>
+  </div>
+</section>
+
+<footer class="reveal">Digital Citizen · Materi edukasi literasi dan keamanan digital.</footer>
+
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  var par=document.getElementById('parallax');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight)||1;
+    bar.style.transform='scaleX('+(h.scrollTop/max)+')';
+    if(par&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+      par.style.transform='translate3d(0,'+(window.scrollY*0.25)+'px,0)';
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal,.flow').forEach(function(el){io.observe(el);});
+
+  var links=[].slice.call(document.querySelectorAll('nav a'));
+  var sio=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id);});
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section[id]').forEach(function(s){sio.observe(s);});
+
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){x.setAttribute('aria-selected',String(x===t));});
+      document.querySelectorAll('.panel').forEach(function(p){p.hidden=(p.id!==t.getAttribute('aria-controls'));});
+    });
+  });
+})();
+</script>
+</body>
+</html>
